@@ -23,8 +23,15 @@ Follow these steps to set up the project on a new machine:
 
 ### Setup
 
-**Clone the repository:**
+1. **Clone the repository:**
 
    ```bash
    git clone https://github.com/IAMZACC/GPT-LangChainWebStreamer.git
    cd GPT-LangChainWebStreamer
+2. **Set up a Python virtual environment**
+3. **Install the dependencies:**
+   ```bash
+   pip install -r requirements.txt
+### Usage
+   ```bash
+   python app.py
