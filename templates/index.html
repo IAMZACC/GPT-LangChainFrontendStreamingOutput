@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Echo</title>
+    <script>
+        function sendMessage() {
+            var xhr = new XMLHttpRequest();
+            var url = "/chat";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    var reply = json.reply;
+                    //document.getElementById("response").innerText = "Streaming Output: " + reply;
+                }
+            };
+            var data = JSON.stringify({"message": document.getElementById("message").value});
+            xhr.send(data);
+        }
+    </script>
+    
+
+
+</head>
+<body>
+    
+    <input type="text" id="message" placeholder="Input Message">
+    <button onclick="sendMessage()">SEND</button>
+    <p id="response"></p>
+
+    <div id="your_output_element"></div>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            var socket = io.connect(window.location.protocol + '//' + document.domain + ':' + location.port);
+            socket.on('new_token', function(data) {
+                var outputElement = document.getElementById('your_output_element');
+                console.log(data.token)
+                outputElement.textContent += data.token + ''; 
+            });
+        });
+    </script>
+     
+
+    
+</body>
+</html>
