@@ -1,4 +1,4 @@
-# GPT-LangChainWebStreamer
+# GPT-LangChainWebStreaming
 
 This Flask-based framework captures streaming outputs from LangChain's LLMs and renders them in real-time within web. Transform your backend AI streaming data into interactive web experiences with our Flask solution that integrates LangChain's output directly into your HTML frontend.
 
